@@ -26,7 +26,7 @@
 }
 
 #psp-projects ul.psp-task-list.checklist li:hover .task-edit-link,
-#psp-projects .task-item:hover .psp-task-edit-links,
+#psp-projects ul.psp-task-list.checklist .task-item:hover .psp-task-edit-links,
 #psp-projects ul.psp-task-list.checklist li:hover .complete-task-link {
 	display: none !important;
 }

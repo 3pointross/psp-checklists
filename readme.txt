@@ -34,8 +34,11 @@ http://www.projectpanorama.com/support
 
 == Changelog ==
 
+1.3
+* Added support for tasks on the project dashboard
+
 1.2.1
-* Compatability update for latest versions of Panorama
+* Compatibility update for latest versions of Panorama
 
 1.2
 * Fixed bug where checklists don't work when assigned to users
