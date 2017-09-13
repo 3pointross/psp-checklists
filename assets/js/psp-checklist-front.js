@@ -1,47 +1,57 @@
-jQuery(document).ready(function() { 
+jQuery(document).ready(function($) {
 
-	if($('.psp-phase-meta-indicator').length) { 
-			
-		$('.psp-phase-meta-indicator').each(function() { 
-			
-					
-			if($(this).val() == 'Yes') { 
-			
+	if($('.psp-phase-meta-indicator').length) {
+
+		$('.psp-phase-meta-indicator').each(function() {
+
+			if($(this).val() == 'Yes') {
 				$(this).parent().addClass('checklist-phase');
-				
 				$('.checklist-phase ul.psp-task-list').addClass('checklist');
-											
 			}
-		
+
 		});
-	
+
 	}
-	
-	$('#psp-projects ul.psp-task-list.checklist li strong').click(function() { 
-				
-        var projectID = $(this).siblings('.task-select').children('.task-save-button').attr('data-project');
-        var phaseID = $(this).siblings('.task-select').children('.task-save-button').attr('data-phase');
-        var taskID = $(this).siblings('.task-select').children('.task-save-button').attr('data-task');
-        var phase_progress = $(this).siblings('.task-select').children('.task-save-button').attr('data-phase-auto');
-        var total_progress = $(this).siblings('.task-select').children('.task-save-button').attr('data-overall-auto');
 
+	$('#psp-projects ul.psp-task-list.checklist li strong').click(function() {
 
-		console.log(projectID);
-		
-		var ajaxurl = $('#psp-ajax-url').val();
-		
-	
-		if($(this).parents().hasClass('complete')) { 
-		
-			var progress = 0;
-		
-		
-		} else { 
-		
-			var progress = 100;
-		
+        var projectID 		= $(this).siblings('.task-select').children('.task-save-button').attr('data-project');
+        var phaseID 		= $(this).siblings('.task-select').children('.task-save-button').attr('data-phase');
+        var taskID 			= $(this).siblings('.task-select').children('.task-save-button').attr('data-task');
+        var phase_progress 	= $(this).siblings('.task-select').children('.task-save-button').attr('data-phase-auto');
+        var total_progress 	= $(this).siblings('.task-select').children('.task-save-button').attr('data-overall-auto');
+
+		if( $(this).parents('li').hasClass('psp-is-sequential') ) {
+
+			var parent = $(this).parents('li');
+			if( $(parent).is(":first-child") ) {
+
+				// This is a first task, check the previous phase
+				var phase_parent = $(this).parents('.psp-phase');
+				if( !$(phase_parent).prev().hasClass('phase-complete') ) {
+					return false;
+				}
+
+			} else {
+				if ( !$(parent).prev().hasClass('complete') ) {
+					return false;
+				}
+			}
+
 		}
-		
+
+		var ajaxurl = $('#psp-ajax-url').val();
+
+		if($(this).parents().hasClass('complete')) {
+
+			var progress = 0;
+
+		} else {
+
+			var progress = 100;
+
+		}
+
         $.ajax({
             url: ajaxurl + "?action=psp_update_task_fe",
             type: 'post',
@@ -52,7 +62,7 @@ jQuery(document).ready(function() {
                 progress: progress
             },
             success: function(data) {
-				
+
 		        if(total_progress == 'Yes') {
 		            psp_update_total_progress_checklist(projectID);
 		        }
@@ -79,10 +89,10 @@ jQuery(document).ready(function() {
         }
 
         return false;
-		
-	
+
+
 	});
-	
+
     function psp_update_total_progress_checklist(projectID) {
 
 		var ajaxurl = $('#psp-ajax-url').val();
@@ -142,6 +152,12 @@ jQuery(document).ready(function() {
         $('#phase-'+phaseID+' .task-list-toggle span b').html(tasks_completed);
         $('#phase-'+phaseID+' .psp-top-complete span').html(completion + '%');
 		$('#phase-'+phaseID+' .psp-phase-overview').removeClass().addClass('psp-phase-overview cf psp-phase-progress-' + completion);
+
+		if( completion == 100 ) {
+			$('#phase-' + phaseID ).addClass('phase-complete');
+		} else {
+			$('#phase-' + phaseID ).removeClass('phase-complete');
+		}
 
 	    if($(window).width() > 768) {
 			$('.psp-phase-info').css('height','auto');

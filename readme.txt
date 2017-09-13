@@ -34,18 +34,28 @@ http://www.projectpanorama.com/support
 
 == Changelog ==
 
-1.3
+= 1.3.6 =
+* Adds support for sequential tasks add-on
+* Switches updater to GitHub for automatic updates!
+
+= 1.3.5 =
+* Updated to support Panorama 1.5
+
+= 1.3.1 =
+* Added support for subscriber checklists
+
+= 1.3 =
 * Added support for tasks on the project dashboard
 
-1.2.1
+= 1.2.1 =
 * Compatibility update for latest versions of Panorama
 
-1.2
+= 1.2 =
 * Fixed bug where checklists don't work when assigned to users
 * Checklists now appear on the front end and can be updated dynamically
 
-1.1
+= 1.1 =
 * Fixed bug where checklists were sometimes checklist JS was being loaded before ACF JS
 
-1.0
+= 1.0 =
 * Initial release
