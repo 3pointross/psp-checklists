@@ -3,14 +3,14 @@
  * Plugin Name: Project Panorama Checklists
  * Plugin URI: http://www.projectpanorama.com
  * Description: Change tasks from % complete to checkboxes
- * Version: 1.3.6
+ * Version: 1.3.7
  * Author: SnapOrbital
  * Author URI: http://www.projectpanorama.com
  * License: GPL2
  * Text Domain: psp_projects
  */
 
-define( 'PSP_CHECK_VER', '1.3.6' );
+define( 'PSP_CHECK_VER', '1.3.7' );
 
 function psp_checklists_assets() {
 
@@ -27,23 +27,47 @@ function psp_checklists_assets() {
 
 }
 
-add_filter( 'psp_phase_fields', 'psp_add_checklist_switch_to_phases' );
+add_filter( 'psp_phase_fields', 'psp_add_checklist_switch_to_phases', 1, 1 );
 function psp_add_checklist_switch_to_phases( $fields ) {
 
 	$checkbox_field = array(
-        'key' => 'field_5436e8a5e06c9',
-        'label' => __('Tasks are checklists','psp_projects'),
-        'name' => 'phase_tasks_as_checklist',
-        'type' => 'checkbox',
-        'choices' => array (
-            'Yes' => 'Yes',
+        'key' 		=> 'field_5436e8a5e06c9',
+        'label' 	=> __('Tasks are checklists','psp_projects'),
+        'name' 		=> 'phase_tasks_as_checklist',
+        'type'	 	=> 'checkbox',
+        'choices' 	=> array (
+            'Yes' 		=> __( 'Yes', 'psp_projects' ),
         ),
         'default_value' => '',
-        'layout' => 'vertical',
-
+        'layout' 		=> 'vertical',
 	);
 
-	$fields[ 'fields' ][ 2 ] [ 'sub_fields' ][] = $checkbox_field;
+	$new_fields = array();
+	$sub_fields = array();
+
+	foreach( $fields['fields'] as $field ) {
+
+		if( $field['name'] == 'phases' ) {
+
+			foreach( $field['sub_fields'] as $sub_field ) {
+
+				if( $sub_field['name'] == 'tasks' ) {
+					$sub_fields[] = $checkbox_field;
+				}
+
+				$sub_fields[] = $sub_field;
+
+			}
+
+			$field['sub_fields'] = $sub_fields;
+
+		}
+
+		$new_fields[] = $field;
+
+	}
+
+	$fields['fields'] = $new_fields;
 
 	return $fields;
 
