@@ -34,6 +34,15 @@ http://www.projectpanorama.com/support
 
 == Changelog ==
 
+= 1.4.1 =
+* Fixes incorrect circle chart updates
+
+= 1.4 =
+* Support for documents on tasks
+
+= 1.3.7 =
+* Different approach for adding checklist box
+
 = 1.3.6 =
 * Adds support for sequential tasks add-on
 * Switches updater to GitHub for automatic updates!

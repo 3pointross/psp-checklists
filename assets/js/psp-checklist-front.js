@@ -13,13 +13,15 @@ jQuery(document).ready(function($) {
 
 	}
 
-	$('#psp-projects ul.psp-task-list.checklist li strong').click(function() {
+	$('#psp-projects ul.psp-task-list.checklist li strong').click(function(e) {
 
-        var projectID 		= $(this).siblings('.task-select').children('.task-save-button').attr('data-project');
-        var phaseID 		= $(this).siblings('.task-select').children('.task-save-button').attr('data-phase');
-        var taskID 			= $(this).siblings('.task-select').children('.task-save-button').attr('data-task');
-        var phase_progress 	= $(this).siblings('.task-select').children('.task-save-button').attr('data-phase-auto');
-        var total_progress 	= $(this).siblings('.task-select').children('.task-save-button').attr('data-overall-auto');
+		e.stopPropagation();
+
+        var projectID 		= $(this).parents('li').find('.task-save-button').attr('data-project');
+        var phaseID 		= $(this).parents('li').find('.task-save-button').attr('data-phase');
+        var taskID 			= $(this).parents('li').find('.task-save-button').attr('data-task');
+        var phase_progress 	= $(this).parents('li').find('.task-save-button').attr('data-phase-auto');
+        var total_progress 	= $(this).parents('li').find('.task-save-button').attr('data-overall-auto');
 
 		if( $(this).parents('li').hasClass('psp-is-sequential') ) {
 
@@ -128,6 +130,7 @@ jQuery(document).ready(function($) {
         var tasks = 0;
         var task_completion = 0;
         var tasks_completed = 0;
+		var phaseIndex = phaseID;
 
 		phaseID++;
 
@@ -144,9 +147,9 @@ jQuery(document).ready(function($) {
         completion = Math.ceil(task_completion / tasks);
         remaining = 100 - completion;
 
-        allCharts[phaseID].segments[0].value = completion;
-        allCharts[phaseID].segments[1].value = remaining;
-        allCharts[phaseID].update();
+        allCharts[phaseIndex].segments[0].value = completion;
+        allCharts[phaseIndex].segments[1].value = remaining;
+        allCharts[phaseIndex].update();
 
         $('#phase-'+phaseID+' .psp-chart-complete').html(completion + '%');
         $('#phase-'+phaseID+' .task-list-toggle span b').html(tasks_completed);

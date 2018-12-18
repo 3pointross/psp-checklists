@@ -5,7 +5,8 @@
 	font-size: 24px;
 }
 
-#psp-projects ul.psp-task-list.checklist li span {
+#psp-projects ul.psp-task-list.checklist li span.psp-progress-bar,
+#psp-projects ul.psp-task-list.checklist li span.psp-task-edit-links {
 	display: none;
 }
 
