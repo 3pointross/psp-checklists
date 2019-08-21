@@ -3,14 +3,14 @@
  * Plugin Name: Project Panorama Checklists
  * Plugin URI: http://www.projectpanorama.com
  * Description: Change tasks from % complete to checkboxes
- * Version: 1.4.1
+ * Version: 1.4.5
  * Author: SnapOrbital
  * Author URI: http://www.projectpanorama.com
  * License: GPL2
  * Text Domain: psp_projects
  */
 
-define( 'PSP_CHECK_VER', '1.4.1' );
+define( 'PSP_CHECK_VER', '1.4.5' );
 
 function psp_checklists_assets() {
 

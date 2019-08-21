@@ -42,6 +42,49 @@ jQuery(document).ready(function($) {
 
 		}
 
+		if( $(this).parent('li').hasClass('sub-task-item') ) {
+
+			parentElm = $(this).parents('li.sub-task-item');
+
+			if( $(parentElm).hasClass('complete') ) {
+
+				$(parentElm).find('.edit-sub-task-select').val(0);
+				$(parentElm).find('.sub-task-save-button').click();
+				$(parentElm).removeClass('complete');
+
+				$(this).parents('li.task-item').removeClass('complete');
+
+			} else {
+
+				$(parentElm).find('.complete-sub-task-link').click();
+
+			}
+
+		} else {
+
+			parentElm = $(this).parents('li.task-item');
+
+			if( $(parentElm).hasClass('psp-has-subtask') ) {
+				return false;
+			}
+
+			if( $(parentElm).hasClass('complete') ) {
+
+				$(parentElm).find('.edit-task-select').val(0);
+				$(parentElm).find('.task-save-button').click();
+				$(parentElm).removeClass('complete');
+
+			} else {
+				$(parentElm).find('.complete-task-link').click();
+			}
+
+		}
+
+
+
+
+		/*
+
 		var ajaxurl = $('#psp-ajax-url').val();
 
 		if($(this).parents().hasClass('complete')) {
@@ -89,6 +132,8 @@ jQuery(document).ready(function($) {
         if(phase_progress == 'Yes') {
             psp_update_phase_completion_checklist(projectID,phaseID);
         }
+
+		*/
 
         return false;
 

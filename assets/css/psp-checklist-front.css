@@ -1,4 +1,4 @@
-#psp-projects ul.psp-task-list.checklist li strong:before {
+#psp-projects ul.psp-task-list.checklist li:not(.psp-has-subtask) strong:before {
 	content: '◻';
 	display: inline-block;
 	margin-right: 5px;
@@ -39,7 +39,7 @@
 	opacity: 0.5;
 }
 
-#psp-projects ul.psp-task-list.checklist li.complete strong:before {
+#psp-projects ul.psp-task-list.checklist li.complete:not(.psp-has-subtask) strong:before {
 	opacity: 0.5;
 	text-decoration: none;
 	content: '✓';

@@ -34,6 +34,9 @@ http://www.projectpanorama.com/support
 
 == Changelog ==
 
+= 1.4.5 =
+* Better support for sub-tasks
+
 = 1.4.1 =
 * Fixes incorrect circle chart updates
 
