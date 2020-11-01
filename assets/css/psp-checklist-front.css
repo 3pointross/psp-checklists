@@ -1,57 +1,64 @@
-#psp-projects ul.psp-task-list.checklist li:not(.psp-has-subtask) strong:before {
+#psp-projects .psp-task-list.checklist .task-item .psp-checklist-box {
+	vertical-align: middle;
+}
+
+#psp-projects .psp-task-list.checklist .task-item .psp-checklist-box::before {
 	content: '◻';
 	display: inline-block;
 	margin-right: 5px;
+	cursor: pointer;
 	font-size: 24px;
 }
 
-#psp-projects ul.psp-task-list.checklist li span.psp-progress-bar,
-#psp-projects ul.psp-task-list.checklist li span.psp-task-edit-links {
+#psp-projects .psp-task-list.checklist > .task-item.psp-has-subtask .psp-checklist-box::before {
 	display: none;
 }
 
-#psp-projects ul.psp-task-list.checklist li.psp-is-sequential {
+#psp-projects .psp-task-list.checklist .task-item span.psp-progress-bar,
+#psp-projects .psp-task-list.checklist .task-item span.psp-task-edit-links {
+	display: none;
+}
+
+#psp-projects .psp-task-list.checklist .task-item.psp-is-sequential {
 	opacity: 0.5;
 }
 
-#psp-projects ul.psp-task-list.checklist li.psp-is-sequential strong {
+#psp-projects .psp-task-list.checklist .task-item.psp-is-sequential .psp-checklist-box::before {
+	cursor: not-allowed;
+}
+
+#psp-projects .psp-task-list.checklist .task-item.psp-is-sequential strong {
 	cursor: default;
 }
 
-#psp-projects .psp-phase.phase-complete + .psp-phase ul.psp-task-list.checklist li:first-child,
-#psp-projects .psp-task-list li.complete + li.psp-is-sequential {
+#psp-projects .psp-phase.phase-complete + .psp-phase .psp-task-list.checklist .task-item:first-child,
+#psp-projects .psp-task-list .task-item.complete + .task-item.psp-is-sequential {
 	opacity: 1;
 }
 
-#psp-projects .psp-phase.phase-complete + .psp-phase ul.psp-task-list.checklist li:first-child strong,
-#psp-projects .psp-task-list li.complete + li.psp-is-sequential strong {
+#psp-projects .psp-task-list .task-item.complete + .task-item.psp-is-sequential .psp-checklist-box::before {
 	cursor: pointer;
 }
 
-#psp-projects .psp-phase.phase-complete + .psp-phase ul.psp-task-list.checklist li:first-child span.psp-task-edit-links,
-#psp-projects ul.psp-task-list.checklist li.complete + li.psp-is-sequential:hover span.psp-task-edit-links {
+#psp-projects .psp-phase.phase-complete + .psp-phase .psp-task-list.checklist .task-item:first-child strong,
+#psp-projects .psp-task-list .complete + .task-item.psp-is-sequential strong {
+	cursor: pointer;
+}
+
+#psp-projects .psp-phase.phase-complete + .psp-phase .psp-task-list.checklist .task-item:first-child span.psp-task-edit-links,
+#psp-projects .psp-task-list.checklist .complete + .psp-is-sequential:hover span.psp-task-edit-links {
 	display: none !important;
 }
 
-#psp-projects .psp-task-list li.complete +
-
-#psp-projects ul.psp-task-list.checklist li.complete {
-	opacity: 0.5;
-}
-
-#psp-projects ul.psp-task-list.checklist li.complete:not(.psp-has-subtask) strong:before {
-	opacity: 0.5;
+#psp-projects .psp-task-list.checklist .task-item.complete:not(.psp-has-subtask) .psp-checklist-box::before {
 	text-decoration: none;
 	content: '✓';
 	font-size: 16px;
 }
 
-#psp-projects ul.psp-task-list.checklist li strong {
-	cursor: pointer;
-}
 
-#psp-projects ul.psp-task-list.checklist li:hover .task-edit-link,
-#psp-projects ul.psp-task-list.checklist .task-item:hover .psp-task-edit-links,
-#psp-projects ul.psp-task-list.checklist li:hover .complete-task-link {
+#psp-projects .psp-task-list.checklist .task-item:hover .task-edit-link,
+#psp-projects .psp-task-list.checklist .task-item:hover .psp-task-edit-links,
+#psp-projects .psp-task-list.checklist .task-item:hover .complete-task-link {
 	display: none !important;
 }
