@@ -6,26 +6,29 @@ jQuery(document).ready(function($) {
 
 			if($(this).val() == 'Yes') {
 				$(this).parent().addClass('checklist-phase');
-				$('.checklist-phase ul.psp-task-list').addClass('checklist');
+				$(this).parent().find('.psp-task-list').addClass('checklist');
 			}
 
 		});
 
 	}
 
-	$('#psp-projects ul.psp-task-list.checklist li strong').click(function(e) {
+	$('#psp-projects .psp-task-list.checklist .task-item .psp-checklist-box').click(function(e) {
+
+		console.log('clicked!');
 
 		e.stopPropagation();
+		e.preventDefault();
 
-        var projectID 		= $(this).parents('li').find('.task-save-button').attr('data-project');
-        var phaseID 		= $(this).parents('li').find('.task-save-button').attr('data-phase');
-        var taskID 			= $(this).parents('li').find('.task-save-button').attr('data-task');
-        var phase_progress 	= $(this).parents('li').find('.task-save-button').attr('data-phase-auto');
-        var total_progress 	= $(this).parents('li').find('.task-save-button').attr('data-overall-auto');
+        var projectID 		= $(this).parents('.task-item').find('.task-save-button').attr('data-project');
+        var phaseID 		= $(this).parents('.task-item').find('.task-save-button').attr('data-phase');
+        var taskID 			= $(this).parents('.task-item').find('.task-save-button').attr('data-task');
+        var phase_progress 	= $(this).parents('.task-item').find('.task-save-button').attr('data-phase-auto');
+        var total_progress 	= $(this).parents('.task-item').find('.task-save-button').attr('data-overall-auto');
 
-		if( $(this).parents('li').hasClass('psp-is-sequential') ) {
+		if( $(this).parents('.task-item').hasClass('psp-is-sequential') ) {
 
-			var parent = $(this).parents('li');
+			var parent = $(this).parents('.task-item');
 			if( $(parent).is(":first-child") ) {
 
 				// This is a first task, check the previous phase
@@ -42,9 +45,9 @@ jQuery(document).ready(function($) {
 
 		}
 
-		if( $(this).parent('li').hasClass('sub-task-item') ) {
+		if( $(this).parent('.task-item').hasClass('sub-task-item') ) {
 
-			parentElm = $(this).parents('li.sub-task-item');
+			parentElm = $(this).parents('.sub-task-item');
 
 			if( $(parentElm).hasClass('complete') ) {
 
@@ -52,7 +55,7 @@ jQuery(document).ready(function($) {
 				$(parentElm).find('.sub-task-save-button').click();
 				$(parentElm).removeClass('complete');
 
-				$(this).parents('li.task-item').removeClass('complete');
+				$(this).parents('.task-item').removeClass('complete');
 
 			} else {
 
@@ -62,7 +65,7 @@ jQuery(document).ready(function($) {
 
 		} else {
 
-			parentElm = $(this).parents('li.task-item');
+			parentElm = $(this).parents('.task-item');
 
 			if( $(parentElm).hasClass('psp-has-subtask') ) {
 				return false;

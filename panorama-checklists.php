@@ -3,14 +3,14 @@
  * Plugin Name: Project Panorama Checklists
  * Plugin URI: http://www.projectpanorama.com
  * Description: Change tasks from % complete to checkboxes
- * Version: 1.4.5
+ * Version: 1.5
  * Author: SnapOrbital
  * Author URI: http://www.projectpanorama.com
  * License: GPL2
  * Text Domain: psp_projects
  */
 
-define( 'PSP_CHECK_VER', '1.4.5' );
+define( 'PSP_CHECK_VER', '1.5' );
 
 function psp_checklists_assets() {
 
@@ -97,6 +97,13 @@ function psp_checklist_add_hidden_field_dashboard( $phase_id, $post_id ) {
 	if( $checklist ) {
 		echo '<input type="hidden" class="psp-phase-meta-indicator" value="Yes" name="psp-phase-meta-indicator">';
 	}
+
+}
+
+add_action( 'psp_before_task_name', 'psp_add_checklist_to_tasks', 10, 5 );
+function psp_add_checklist_to_tasks( $post_id, $phase_index, $task_id, $phases, $phase ) {
+
+	echo '<span class="psp-checklist-box"></span>';
 
 }
 

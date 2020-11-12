@@ -34,6 +34,9 @@ http://www.projectpanorama.com/support
 
 == Changelog ==
 
+= 1.5 =
+* Supports Panorama 2.0
+
 = 1.4.5 =
 * Better support for sub-tasks
 
